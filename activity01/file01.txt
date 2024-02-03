@@ -1,0 +1,9 @@
+Activity 1
+Create a simple shell script to tell the user about their session – they need to know:
+•	What their username is
+•	What the current date is
+•	What the time is
+•	What their current working directory is
+•	How many files they have in that directory
+•	What is the biggest file in their current directory
+
