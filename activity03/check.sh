@@ -4,6 +4,7 @@
 # 
 # Purpose : Comparing lottery numbers
 #
+shopt -s lastpipe
 
 if [ -z "$1" ]
 then
@@ -36,10 +37,39 @@ do
         if [ ${numbers[i]} -ge 51 ] || [ ${numbers[i]} -lt 1 ]
         then
                 echo ${numbers[i]} "is outside of the range. Please enter your numbers again!"
+		exit 1
         fi
 done
 if [ ${numbers[5]} -ge 11 ] || [ ${numbers[5]} -lt 1 ]
 then
 	echo "Power ball is outside of the range. Please enter your numbers again!"
+	exit 1
 fi
+match=
+cat tekst.txt | while read line
+do
+	for number in {0..5}
+	do
+		echo $number
+		for checking in {1..6}
+		do 
+			echo $checking
+			#check=$(echo $line | awk -F',' '{print$(checking)}')
+
+			check=$(echo $line | awk '{print$(checking)}')
+
+			echo $check
+			if [[ ${numbers[number]} == check ]]
+			then
+				match+=1
+			fi
+		done
+	done
+done
+echo $match
+
+
+
+
+
 

@@ -14,7 +14,7 @@ do
 	echo "Please provide a number"
 	read answer
 
-if [[ $answer =~ [0-9] ]]
+if [ -n $answer ] &&  [ $answer -eq $answer ] 2>/dev/null
 then
 
 	if [ ${#array[@]} -ge 4 ]
