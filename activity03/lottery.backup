@@ -6,12 +6,7 @@
 #
 
 today=$(date +'%Y%m%d')
-#for numbers in [1..10]
-#do 
-#	echo $((1 + $RANDOM % 50)) >> $today
-#done
-#echo $((1 + $RANDOM % 10)) >> $1
 echo $(shuf -i 1-50 -n 5) > numbers.$today $(shuf -i 1-10 -n 1) >> numbers.$today
 #tr ' ' ';' numbers.$today tekst.txt
-echo $(sed 's/ /,/g' numbers.$today) >> tekst.txt
+sed 's/ /,/g' numbers.$today tekst.txt
 

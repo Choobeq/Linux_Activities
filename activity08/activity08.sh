@@ -9,9 +9,10 @@ sum=0
 average=0
 min=0
 max=0
+echo
 while true
 do
-	echo "Please provide a number"
+	echo -n "Please provide a number : "
 	read answer
 
 if [ -n $answer ] &&  [ $answer -eq $answer ] 2>/dev/null

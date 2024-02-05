@@ -20,6 +20,7 @@ else
 		then
 			random_numbers=0
 			touch $1
+			#Didn't worked!
 			while [ $random_numbers -lt $2 ]
 			do 
 				echo $((1 + $RANDOM % 10)) >> $1

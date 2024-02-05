@@ -13,7 +13,7 @@ then
         echo "Missing numbers! Please provide 2 numbers!"
 fi
 
-if [[ $1 == [0-9] ]] || [[ $1 -lt 0 ]] && [[ $2 == [0-9] ]] || [[ $2 -lt 0 ]]
+if [[ "$1" =~ ^[0-9]+$ ]] || [[ $1 -lt 0 ]] && [[ $2 =~ ^[0-9]+$ ]] || [[ $2 -lt 0 ]]
 then
 	if [[ $1 == $2 ]]
 	then
@@ -26,6 +26,6 @@ then
 		echo "Difference between number" $2 "and number" $1 "is" $(($2-$1))
         fi
 else
-        echo "No numbers, no results ;)"
+	echo "No numbers - no results!"
 fi
 echo

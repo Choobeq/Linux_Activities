@@ -5,7 +5,7 @@
 # Purpose : To display username, date, time, current working directory and the biggest file
 #
 current_path=$(pwd)
-today=$(date +"%A %D %B %Y")
+today=$(date +"%A %d %B %Y")
 t_time=$(date +%T)
 biggest_file=$(du -sh * |sort -hr | head -n 1)
 echo

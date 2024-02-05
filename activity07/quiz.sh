@@ -18,25 +18,38 @@ do
 	read answer < /dev/tty 
 
 	answer=${answer^^}
-	echo $question
-	echo $answer
+	#echo $question
+	#echo $answer
 	if [[ "$question" == "$answer" ]]
 	then
 		echo "Congrats! Correct Answer!"
 		correct=$((++correct))
-		echo $correct
+		#echo $correct
 	else
 		echo "Wrong Answer!"
 		wrong=$((++wrong))
-		echo $wrong
+		#echo $wrong
 
 	fi
-	echo "Would you like to continue? Y/N"
-	read cont < /dev/tty
-	cont=${cont^^}
+	while true
+	do
+		echo "Would you like to continue? Y/N"
+		read cont < /dev/tty
+		cont=${cont^^}
+		if [[ $cont = "Y" ]]
+		then
+			break	
+		elif [[ $cont = "N" ]]
+		then
+			echo "Goodbye!"
+			break
+		else
+			echo "Wrong answer! Choose Y or N"
+		fi
+	done
 	if [[ $cont = "Y" ]]
 	then
-		echo $cont
+		continue
 	else
 		break
 	fi
