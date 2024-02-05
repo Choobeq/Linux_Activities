@@ -6,6 +6,8 @@
 #
 shopt -s lastpipe
 
+today=$(date +'%Y%m%d')
+
 if [ -z "$1" ]
 then
         echo "Missing all numbers! Please provide 6 numbers: 5 between 1-50 and 1 between 1-10 seperated by space"
@@ -28,10 +30,11 @@ then
 	exit 1
 elif [ -z "$6" ]
 then
-        echo "Missing 6th parameter! Please provide 6 numbers: 5 between 1-50 and 1 between 1-10 seperated by space" 
+        echo "Missing 6th number! Please provide 6 numbers: 5 between 1-50 and 1 between 1-10 seperated by space" 
 	exit 1
 else
-        echo "All numbers received!"
+	echo
+	echo "All numbers received!"
 fi
 
 numbers=($1 $2 $3 $4 $5 $6)
@@ -50,8 +53,8 @@ do
 	then
                 echo ${numbers[i]} "is outside of the range. Please enter your numbers again!"
 		exit 1
-	else
-		echo ${numbers[i]} "number veryfied!"
+	#else
+	#	echo ${numbers[i]} "number veryfied!"
         fi
 done
 
@@ -62,30 +65,23 @@ then
 	exit 1
 fi
 match=0
-cat tekst.txt | while read line
+cat $today | while read line
 do
 	for number in {0..5}
 	do
-		echo $number
-		for column in {1..6}
-		do 
-			echo $column
-			#check=$(echo $line | awk -F',' '{print$(column)}')
-
-			check=$(echo $line | awk -F',' '{print$(column)}')
-
-			echo $check
-			if [[ ${numbers[number]} == check ]]
-			then
-				match+=1
-			fi
-		done
+		if [[ ${numbers[number]} == $line ]]
+		then
+			match=$((match + 1))
+		fi
 	done
 done
-echo $match
-
-
-
-
-
-
+if [ $match -ge 1 ]
+then
+	echo
+	echo "You have quested" $match "numbers! Congratulations!"
+	echo
+else
+	echo
+	echo "Sorry. You haven't guessed any numbers! Better luck next time."
+	echo
+fi
